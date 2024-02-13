@@ -17,3 +17,5 @@ function Post(props) {
         </article>
     )
 }
+
+export default Post
