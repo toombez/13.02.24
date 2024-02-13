@@ -8,11 +8,11 @@ function Post(props) {
             }}
         >
             <h1>
-                {props.title}
+                {props.post.title}
             </h1>
 
             <p>
-                {props.content}
+                {props.post.content}
             </p>
         </article>
     )
