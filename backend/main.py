@@ -2,6 +2,7 @@ from flask import Flask
 from flask_peewee.db import SqliteDatabase
 from flask_peewee.rest import RestAPI
 from flask_admin import Admin
+from flask_cors import CORS
 from flask_admin.contrib.peewee import ModelView
 import peewee
 
@@ -17,6 +18,8 @@ class PostAdminView(ModelView):
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '123'
+
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 if (__name__ == '__main__'):
     try:
