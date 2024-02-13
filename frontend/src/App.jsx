@@ -6,17 +6,21 @@ function App() {
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
-        ofetch('http://127.0.0.1:5000/api/post/')
-            .then((r) => {
-                console.log(r);
-
-                setPosts(() => r?.objects || [])
-            })
+        refreshPosts()
     }, [])
+
+    async function refreshPosts() {
+        const responce = await ofetch('http://127.0.0.1:5000/api/post/')
+        setPosts(() => responce?.objects || [])
+    }
 
     return (
         <div>
-            {posts.map((post) => <Post post={post} />)}
+            <button onClick={refreshPosts}>
+                refresh
+            </button>
+
+            {posts.map((post) => <Post key={post.id} post={post} />)}
         </div>
     )
 }
